@@ -1,0 +1,52 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int knapsack(int val[],int wt[],int n,int W)
+{
+    int k[n+1][W+1];
+    int i,w;
+    
+    for(i=0;i<=n;i++)
+    {
+        for(w=0;w<=W;w++)
+        {
+            if(i==0 || w==0)
+            {
+                k[i][w]=0;
+            }
+            
+            else if(wt[i-1]>w)
+            {
+                k[i][w]=k[i-1][w];
+            }
+            
+            else
+            {
+                k[i][w]=max(k[i-1][w],val[i-1]+k[i-1][w-wt[i-1]]);
+            }
+        }
+    }
+    
+    return k[n][W];
+}
+
+int main()
+{
+    
+    int val[]={2,3,4,1};
+    int wt[]={3,4,5,6};
+    int W=8;
+    
+    int n=sizeof(val)/sizeof(val[0]);
+    std::cout <<" Maximum Profit is :"<<knapsack(val,wt,n,W) << std::endl;
+    
+    return 0;
+}
