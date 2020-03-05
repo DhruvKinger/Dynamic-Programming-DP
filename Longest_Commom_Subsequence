@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int max(int a, int b)  
+{  
+    return (a > b)? a : b;  
+}  
+
+int Long_common_sub(char *x,char *y,int n,int m)
+{
+    int i,j;
+    int l[n+1][m+1];
+    
+    for(i=0;i<=n;i++)
+    {
+        for(j=0;j<=m;j++)
+        {
+            if(i==0 || j==0)
+            {
+                
+             l[i][j]=0;
+            }
+            
+            else if(x[i-1]==y[j-1])
+            {
+                l[i][j]=l[i-1][j-1]+1;
+            }
+            
+            else
+            {
+                l[i][j]=max(l[i-1][j],l[i][j-1]);
+            }
+        }
+    }
+         
+    return l[n][m];
+}
+
+int main()
+{
+char X[]="AGGTAB";
+char Y[]="GXTXAYB";
+int n=strlen(X);
+int m=strlen(Y);
+
+cout<<"Length of longest commom subsequence is :"<<Long_common_sub(X,Y,n,m);
+
+    return 0;
+}
