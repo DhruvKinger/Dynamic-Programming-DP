@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int count(int arr[],int m,int n)
+{
+    int c[n+1][m]; //two dimensional matrix to store the result 
+
+    memset(c,0,sizeof(c)); // Initialize all values as 0  
+
+    for (int i=0;i<m;i++)
+    {
+        c[i][0]=1;
+    
+    }
+
+
+    for (int i=1;i<=m;i++)
+  {
+
+    for (int j=1;j<=n;j++)
+  {
+
+    if(arr[i-1]>j)
+   {  c[i][j]=c[i-1][j];
+    }
+    
+    else
+    {
+        c[i][j]=c[i-1][j]+c[i][j-(i-1)];
+        }
+    }
+  }
+  
+return c[m][n];
+
+    
+}
+
+int main()
+{
+    int arr[] = {1, 2, 3}; 
+    int m = sizeof(arr)/sizeof(arr[0]); 
+    int n = 4; 
+    std::cout << "No of ways we can get output:"<<count(arr, m, n) << std::endl;
+    return 0;
+}
