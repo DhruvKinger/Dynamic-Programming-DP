@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-
 int count(int arr[],int m,int n)
 {
-    int c[n+1][m]; //two dimensional matrix to store the result 
+    int c[m+1][n+1]; //two dimensional matrix to store the result 
 
     memset(c,0,sizeof(c)); // Initialize all values as 0  
 
@@ -22,12 +20,14 @@ int count(int arr[],int m,int n)
   {
 
     if(arr[i-1]>j)
-   {  c[i][j]=c[i-1][j];
+   {  
+       c[i][j]=c[i-1][j];
     }
     
     else
     {
-        c[i][j]=c[i-1][j]+c[i][j-(i-1)];
+        c[i][j]=c[i-1][j]+c[i][j-arr[i-1]];
+        
         }
     }
   }
