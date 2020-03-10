@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+void max_sum(int a[],int n)
+{
+    int start=0,end=0,s=0;
+    int max_end=0,max_srt=a[0];
+    
+    for(int i=0;i<n;i++)
+    {
+        max_end=max_end+a[i];
+        if(max_end<0)
+        {
+            max_end=0;
+            s=i+1;
+            
+        }
+        
+        if(max_srt<max_end)
+        {
+            max_srt=max_end;
+            start=s; end=i;
+        }
+    }
+    
+    cout<<"Sum is: "<<max_srt<<" \nStart index: "<<start<<" \nEnd index is: "<<end;
+}
+
+int main()
+{
+  int a[]={-2, -3, 4, -1, -2, 1, 5, -3};
+  int n=sizeof(a)/sizeof(a[0]);
+  max_sum(a,n);
+    
+    return 0;
+}
